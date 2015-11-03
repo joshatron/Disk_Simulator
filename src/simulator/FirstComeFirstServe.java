@@ -7,22 +7,29 @@ public class FirstComeFirstServe implements Algorithm
 {
 
     @Override
-    public Request run(Request[] requests)
+    public int[] run(Request[] requests, double time)
     {
-        Request next = requests[0];
-        int time = next.getArrival();
-        for(int k = 1; k < requests.length; k++)
+        Request next = null;
+        int nearestTime = 9999999;
+        for(int k = 0; k < requests.length; k++)
         {
-            if(requests[k] != null)
+            if(requests[k] != null && requests[k].getArrival() <= time)
             {
-                if(requests[k].getArrival() < time)
+                if(requests[k].getArrival() < nearestTime)
                 {
                     next = requests[k];
-                    time = next.getArrival();
+                    nearestTime = next.getArrival();
                 }
             }
         }
 
-        return next;
+        if(next != null)
+        {
+            return new int[]{next.getTrack(), next.getSector()};
+        }
+        else
+        {
+            return null;
+        }
     }
 }

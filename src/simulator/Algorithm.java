@@ -5,5 +5,5 @@ package simulator;
  */
 public interface Algorithm
 {
-    public Request run(Request[] requests);
+    public int[] run(Request[] requests, double time);
 }
