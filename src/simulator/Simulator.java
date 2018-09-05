@@ -10,8 +10,8 @@ public class Simulator
 
     public static void main(String[] args)
     {
-        Algorithm algorithm = new C_Look();
-        Request[] requests = createRandomData();
+        Algorithm algorithm = new ShortestSeekTimeFirst();
+        Request[] requests = createTestData();
         double[] results = new double[requests.length];
 
         int track = 0;
@@ -36,6 +36,7 @@ public class Simulator
                             results[k] = time - requests[k].getArrival();
                             requests[k] = null;
                             requestsLeft--;
+                            System.out.println("track: " + track + ", sector: " + sector + ", time: " + time);
                         }
                     }
                 }
